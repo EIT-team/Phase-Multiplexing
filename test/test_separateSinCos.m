@@ -2,7 +2,7 @@
 
 %setup
 addpath('../src')
-% Generate Test Signals
+%% Generate Test Signals
 Fs = 20000;
 Fc = 1000;
 
@@ -19,7 +19,7 @@ X2 = Mag_X2*cos(2*pi*Fc*x);
 C = X1 + X2; %Combine signals
 
 
-% Separate out signals
+%% Separate out signals
 
 [Y1 Y2] = separateSinCos(X1,C);
 
