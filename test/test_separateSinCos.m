@@ -13,8 +13,8 @@ x = (0:1/Fs:end_t);
 Mag_X1 = 2;
 Mag_X2 = 3;
 
-X1 = Mag_X1*sin(2*pi*Fc*x);
-X2 = Mag_X2*cos(2*pi*Fc*x);
+X1 = Mag_X1*sin(2*pi*Fc*x)';
+X2 = Mag_X2*cos(2*pi*Fc*x)';
 
 C = X1 + X2; %Combine signals
 
@@ -27,6 +27,19 @@ C = X1 + X2; %Combine signals
 % Test results
 assert ( isempty(find((int8(Y1) == Mag_X1)==0)) )
 assert ( isempty(find((int8(Y2) == Mag_X2)==0)) )
-  
+
+
+%% Test multiple columns of data
+
+D(:,1) = X1 + X2;
+D(:,2) = 2*X1 + 5*X2;
+
+[Y3 Y4] = separateSinCos(X1,D);
+
+% Test results
+assert ( isempty(find((int8(Y3(:,1)) == Mag_X1)==0)) )
+assert ( isempty(find((int8(Y4(:,1)) == Mag_X2)==0)) )
+assert ( isempty(find((int8(Y3(:,2)) == 2*Mag_X1)==0)) )
+assert ( isempty(find((int8(Y4(:,2)) == 5*Mag_X2)==0)) )
 
 
