@@ -1,4 +1,4 @@
-# Phase-Multiplexing Script
+# Phase-Multiplexing
 
 Code for separating phase multiplexed EIT data into individual parts.
 
